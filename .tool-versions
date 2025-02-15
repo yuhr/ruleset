@@ -1,4 +1,6 @@
-just                      1.39.0
-rust                      1.84.0
-cargo:cargo-insta         1.42.0
-cargo:mdbook              0.4.43
+just                1.39.0
+rust                1.84.0
+cargo:cargo-insta   1.42.0
+cargo:mdbook        0.4.43
+cargo:cargo-release 0.25.17
+cargo:convco        0.6.2
