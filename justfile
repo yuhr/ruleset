@@ -4,7 +4,6 @@
 setup:
 	chmod +x .githooks/*
 	git config --local core.hooksPath .githooks
-	rustup install nightly
 
 run *ARGS:
 	cargo run --bin astre -- {{ARGS}}
