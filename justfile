@@ -8,6 +8,12 @@ setup:
 run *ARGS:
 	cargo run --bin astre -- {{ARGS}}
 
+bump *ARGS:
+	cargo release --workspace --no-tag --no-push --no-publish $(convco version --bump) {{ARGS}}
+
+release *ARGS:
+	cargo release --workspace --sign-tag {{ARGS}}
+
 doc *ARGS:
 	RUSTFLAGS="-A unused_variables -A dead_code" RUST_BACKTRACE=1 cargo doc --no-deps {{ARGS}}
 
