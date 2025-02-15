@@ -12,7 +12,7 @@ keywords = ["parser"]
 license = "MPL-2.0"
 readme = "README.md"
 repository = "https://github.com/yuhr/ruleset"
-version = "0.0.0"
+version = "1.0.0"
 
 [package]
 authors.workspace = true
@@ -30,7 +30,7 @@ anyhow = "=1.0.95"
 comfy-table = "=7.1.3"
 derive-where = "=1.2.7"
 either = "=1.13.0"
-ruleset-macros = { path = "src/macros", version = "=0.0.0" }
+ruleset-macros = { path = "src/macros", version = "=1.0.0" }
 serde = { version = "=1.0.217", features = ["derive"], optional = true }
 stable_try_trait_v2 = "=1.75.1"
 xxhash-rust = { version = "=0.8.15", features = ["xxh3"] }
