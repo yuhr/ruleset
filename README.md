@@ -50,7 +50,7 @@ In the wild there must definitely be more efficient parsing algorithms and imple
 
 ## Usage
 
-In this document, we use the term “syntactic rules” to refer to rules defined in `ruleset!` macro, which have the inverted form compared to how rules are typically written in formal grammar studies. For example, `A, B => C, D` in Ruleset corresponds to \\(\mathrm{C} \mathrm{D} → \mathrm{A} \mathrm{B}\\) in formal grammar.
+In this document, we use the term “syntactic rules” to refer to rules defined in `ruleset!` macro, which have the inverted form compared to how rules are typically written in formal grammar studies. For example, `A, B => C, D` in Ruleset corresponds to $\mathrm{C} \mathrm{D} → \mathrm{A} \mathrm{B}$ in formal grammar.
 
 ### Basics
 
