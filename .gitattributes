@@ -1,2 +1,2 @@
 **/* linguist-documentation=true
-src linguist-documentation=false
+src/**/*.rs linguist-documentation=false
