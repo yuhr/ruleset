@@ -1,0 +1,6 @@
+[formatting]
+trailing_newline = false
+reorder_arrays = true
+reorder_keys = true
+allowed_blank_lines = 1
+indent_string = "\t"

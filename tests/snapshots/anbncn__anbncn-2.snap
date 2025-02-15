@@ -1,0 +1,99 @@
+---
+source: tests/anbncn.rs
+expression: serialized
+---
+value: S
+range:
+  start: 0
+  end: 9
+subtrees:
+- value: !A 2
+  range:
+    start: 0
+    end: 3
+  subtrees:
+  - value: !A 1
+    range:
+      start: 0
+      end: 2
+    subtrees:
+    - value: !A 0
+      range:
+        start: 0
+        end: 1
+      subtrees:
+      - value: !Char 'a'
+        range:
+          start: 0
+          end: 1
+        subtrees: []
+    - value: !Char 'a'
+      range:
+        start: 1
+        end: 2
+      subtrees: []
+  - value: !Char 'a'
+    range:
+      start: 2
+      end: 3
+    subtrees: []
+- value: !B 2
+  range:
+    start: 3
+    end: 6
+  subtrees:
+  - value: !B 1
+    range:
+      start: 3
+      end: 5
+    subtrees:
+    - value: !B 0
+      range:
+        start: 3
+        end: 4
+      subtrees:
+      - value: !Char 'b'
+        range:
+          start: 3
+          end: 4
+        subtrees: []
+    - value: !Char 'b'
+      range:
+        start: 4
+        end: 5
+      subtrees: []
+  - value: !Char 'b'
+    range:
+      start: 5
+      end: 6
+    subtrees: []
+- value: !C 2
+  range:
+    start: 6
+    end: 9
+  subtrees:
+  - value: !C 1
+    range:
+      start: 6
+      end: 8
+    subtrees:
+    - value: !C 0
+      range:
+        start: 6
+        end: 7
+      subtrees:
+      - value: !Char 'c'
+        range:
+          start: 6
+          end: 7
+        subtrees: []
+    - value: !Char 'c'
+      range:
+        start: 7
+        end: 8
+      subtrees: []
+  - value: !Char 'c'
+    range:
+      start: 8
+      end: 9
+    subtrees: []
