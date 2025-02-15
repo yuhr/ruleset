@@ -1,0 +1,59 @@
+---
+source: tests/arithmetic.rs
+expression: tree
+---
+Expression@0..13
+└─Composite@0..13
+  └─Additive(1)@0..13
+    ├─Additive(0)@0..11
+    │ ├─Atomic@0..1
+    │ │ └─Number@0..1
+    │ │   └─Integer@0..1
+    │ │     └─Digit@0..1
+    │ │       └─Char('0')@0..1
+    │ ├─Char('+')@1..2
+    │ └─Multiplicative(1)@2..11
+    │   ├─Multiplicative(0)@2..9
+    │   │ ├─Atomic@2..3
+    │   │ │ └─Number@2..3
+    │   │ │   └─Integer@2..3
+    │   │ │     └─Digit@2..3
+    │   │ │       └─Onenine@2..3
+    │   │ │         └─Char('1')@2..3
+    │   │ ├─Char('*')@3..4
+    │   │ └─Exponentiation(1)@4..9
+    │   │   ├─Atomic@4..5
+    │   │   │ └─Number@4..5
+    │   │   │   └─Integer@4..5
+    │   │   │     └─Digit@4..5
+    │   │   │       └─Onenine@4..5
+    │   │   │         └─Char('2')@4..5
+    │   │   ├─Char('^')@5..6
+    │   │   └─Exponentiation(0)@6..9
+    │   │     ├─Atomic@6..7
+    │   │     │ └─Number@6..7
+    │   │     │   └─Integer@6..7
+    │   │     │     └─Digit@6..7
+    │   │     │       └─Onenine@6..7
+    │   │     │         └─Char('3')@6..7
+    │   │     ├─Char('^')@7..8
+    │   │     └─Atomic@8..9
+    │   │       └─Number@8..9
+    │   │         └─Integer@8..9
+    │   │           └─Digit@8..9
+    │   │             └─Onenine@8..9
+    │   │               └─Char('4')@8..9
+    │   ├─Char('/')@9..10
+    │   └─Atomic@10..11
+    │     └─Number@10..11
+    │       └─Integer@10..11
+    │         └─Digit@10..11
+    │           └─Onenine@10..11
+    │             └─Char('5')@10..11
+    ├─Char('-')@11..12
+    └─Atomic@12..13
+      └─Number@12..13
+        └─Integer@12..13
+          └─Digit@12..13
+            └─Onenine@12..13
+              └─Char('6')@12..13

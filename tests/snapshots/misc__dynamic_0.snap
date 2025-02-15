@@ -1,0 +1,6 @@
+---
+source: tests/misc.rs
+expression: tree
+---
+D@2..3
+└─C@2..3

@@ -1,0 +1,17 @@
+.*
+/target
+/bin
+/lib
+/include
+/share
+*.log
+
+!.git*
+!.*rc
+!.*ignore
+!.editorconfig
+!.vscode
+!.tool-versions
+
+book
+book.toml
