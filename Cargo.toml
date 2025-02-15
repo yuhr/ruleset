@@ -1,11 +1,11 @@
 [workspace]
-members = ["src/macros"]
+members = [".", "src/macros"]
 resolver = "2"
 
 [workspace.package]
 authors = ["Sʜɪᴍᴜʀᴀ Yū <mail@yuhr.org>"]
 categories = ["parsing"]
-description = ""
+description = "Monotonic chart parsing."
 edition = "2021"
 exclude = ["*.toml", ".*", "justfile"]
 keywords = ["parser"]
@@ -21,7 +21,6 @@ edition.workspace = true
 exclude.workspace = true
 license.workspace = true
 name = "ruleset"
-publish = false
 repository.workspace = true
 version.workspace = true
 
