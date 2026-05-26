@@ -35,6 +35,7 @@ stable_try_trait_v2 = "=1.75.1"
 xxhash-rust = { version = "=0.8.15", features = ["xxh3"] }
 
 [dev-dependencies]
+criterion = "0.5.1"
 insta = "=1.42.0"
 ruleset = { path = ".", features = ["serde"] }
 serde = "=1.0.217"
@@ -43,3 +44,7 @@ stdext = "=0.3.3"
 
 [lib]
 doctest = false
+
+[[bench]]
+harness = false
+name = "parsing"
