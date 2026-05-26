@@ -11,11 +11,6 @@
 	"[toml]": {
 		"editor.defaultFormatter": "tamasfe.even-better-toml"
 	},
-	"rust-analyzer.server.extraEnv": {
-		"CARGO_TARGET_DIR": "target/analyzer"
-	},
-	"rust-analyzer.check.extraArgs": ["--target-dir=target/analyzer"],
-	"rust-analyzer.rustfmt.extraArgs": ["+nightly", "--unstable-features", "--skip-children"],
 	"[markdown]": {
 		"editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
 	},
