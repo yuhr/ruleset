@@ -14,13 +14,13 @@ path = "lib.rs"
 proc-macro = true
 
 [dependencies]
-convert_case = "=0.7.1"
-in_definite = "=1.0.0"
-nanoid = "=0.4.0"
-proc-macro-error = "=1.0.4"
-proc-macro2 = "=1.0.93"
-quote = "=1.0.38"
-syn = { version = "=2.0.96", features = [
+convert_case = "0.7.1"
+in_definite = "1.0.0"
+nanoid = "0.4.0"
+proc-macro-error = "1.0.4"
+proc-macro2 = "1.0.93"
+quote = "1.0.38"
+syn = { version = "2.0.96", features = [
 	"extra-traits",
 	"full",
 	"visit",
