@@ -1,7 +1,7 @@
 [tools]
-"cargo:cargo-insta" = "1.43.1"
-"cargo:cargo-release" = "0.25.18"
-"cargo:convco" = "0.6.2"
-"cargo:mdbook" = "0.4.49"
-just = "1.40.0"
-rust = "1.86.0"
+"cargo:cargo-insta" = "1.48.0"
+"cargo:cargo-release" = "1.1.2"
+"cargo:convco" = "0.6.4"
+"cargo:mdbook" = "0.5.3"
+just = "1.54.0"
+rust = "1.96.0"
