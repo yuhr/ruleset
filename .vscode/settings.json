@@ -16,5 +16,6 @@
 	},
 	"files.exclude": {
 		"tests/**/snapshots": true
-	}
+	},
+	"rust-analyzer.rustfmt.extraArgs": ["+nightly"]
 }
