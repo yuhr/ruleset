@@ -41,6 +41,12 @@ impl<T> Index<usize> for Ruleset<T> {
 	fn index(&self, index: usize) -> &Self::Output { &self.0[index] }
 }
 
+impl<T> PartialEq for Ruleset<T> {
+	fn eq(&self, other: &Self) -> bool { std::ptr::eq(self.0.as_ptr(), other.0.as_ptr()) }
+}
+
+impl<T> Eq for Ruleset<T> {}
+
 impl<T> Debug for Ruleset<T> {
 	fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
 		write!(f, "Ruleset ")?;

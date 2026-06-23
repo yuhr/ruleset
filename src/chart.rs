@@ -106,12 +106,21 @@ impl<T> Chart<T> {
 	}
 
 	/// Enumerates reductions on the row whose index is `cursor - offset - 1`.
-	fn reductions_for(&self, reducer: &Reducer<T>) -> impl '_ + Iterator<Item = Reduction<T>> {
+	fn reductions_for<'a>(
+		&'a self,
+		reducer: &Reducer<T>,
+		grammar: &'a [&Ruleset<T>],
+	) -> impl 'a + Iterator<Item = Reduction<T>> {
 		let (cursor, offset) = reducer.address();
 		let cursor = (cursor - offset).checked_sub(1);
 		cursor
 			.into_iter()
-			.flat_map(|cursor| self.items_horizontally_on(cursor).filter_map(Item::reduction))
+			.flat_map(|cursor| {
+				self.items_horizontally_on(cursor).filter_map(Item::reduction).filter(|reduction| {
+					let origin = reduction.origin();
+					grammar.iter().find(|&&ruleset| ruleset == origin).is_some()
+				})
+			})
 			.cloned()
 	}
 
@@ -135,11 +144,12 @@ impl<T> Chart<T> {
 	}
 
 	/// Creates reductions by the reducer from the subrules in the chart.
-	fn reduce_from_chart(
-		&self,
+	fn reduce_from_chart<'a>(
+		&'a self,
 		reducer: Reducer<T>,
-	) -> impl '_ + Iterator<Item = (Reducible<T>, Reducer<T>)> {
-		self.reductions_for(&reducer)
+		grammar: &'a [&Ruleset<T>],
+	) -> impl 'a + Iterator<Item = (Reducible<T>, Reducer<T>)> {
+		self.reductions_for(&reducer, grammar)
 			.map(Reducible::try_from)
 			.filter_map(std::result::Result::ok)
 			.zip(std::iter::repeat(reducer))
@@ -203,7 +213,7 @@ impl<T> Chart<T> {
 	/// Plots reductions caused by the reducer into the chart.
 	fn seminate_reductions(&mut self, reducer: Reducer<T>, grammar: &[&Ruleset<T>]) {
 		let from_grammar = self.reduce_from_grammar(reducer.clone(), grammar);
-		let from_chart = self.reduce_from_chart(reducer);
+		let from_chart = self.reduce_from_chart(reducer, grammar);
 		let reductions = self.reduce(from_grammar.chain(from_chart));
 		for reduction in reductions {
 			self.plot_reduction(reduction, grammar);

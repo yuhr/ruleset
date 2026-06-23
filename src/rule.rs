@@ -7,7 +7,7 @@ use std::ops::Deref;
 /// A syntactic rule.
 ///
 /// This is actually an owning shared reference to a [`Subrule`] in a [`Ruleset`].
-#[derive(AsRef)]
+#[derive(AsRef, PartialEq, Eq)]
 pub struct Rule<T> {
 	pub(crate) container: Ruleset<T>,
 	pub(crate) index: usize,
