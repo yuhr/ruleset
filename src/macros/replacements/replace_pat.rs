@@ -7,6 +7,7 @@ use std::ops::Deref;
 use std::ops::DerefMut;
 use syn::parse_quote_spanned;
 use syn::spanned::Spanned;
+use syn::token::Ref;
 use syn::visit_mut::visit_pat_mut;
 use syn::visit_mut::VisitMut;
 use syn::Ident;
@@ -22,7 +23,7 @@ pub struct ReplacePat(Vec<ReplacePatItem>);
 pub enum ReplacePatItem {
 	Reference(Ident, Pat),
 	Or(Ident, Vec<(Pat, ReplacePat)>),
-	Ident(Ident, Ident),
+	Ident(Ident, Ident, Option<Ref>),
 }
 
 impl Deref for ReplacePat {
@@ -56,7 +57,7 @@ impl VisitMut for ReplacePat {
 				*i = parse_quote_spanned!(cases.span() => ref #sym);
 				self.push(ReplacePatItem::Or(sym, replacements));
 			}
-			Pat::Ident(PatIdent { ident, mutability, .. }) => {
+			Pat::Ident(PatIdent { ident, mutability, by_ref, .. }) => {
 				if mutability.is_some() {
 					emit_error!(
 						mutability,
@@ -66,8 +67,13 @@ impl VisitMut for ReplacePat {
 				if !ident.to_string().chars().any(|char| char.is_ascii_uppercase()) {
 					let sym = gensym(ident.span());
 					let ident = ident.clone();
-					*i = parse_quote_spanned!(ident.span() => #sym);
-					self.push(ReplacePatItem::Ident(sym, ident));
+					let by_ref = by_ref.clone();
+					*i = if let Some(by_ref) = by_ref {
+						parse_quote_spanned!(ident.span() => #by_ref #sym)
+					} else {
+						parse_quote_spanned!(ident.span() => #sym)
+					};
+					self.push(ReplacePatItem::Ident(sym, ident, by_ref));
 				}
 			}
 			_ => {}
@@ -103,10 +109,10 @@ impl ReplacePat {
 					});
 					quote! { match #sym { #(#arms,)* _ => {} } }
 				}
-				Ident(sym, ident) => {
+				Ident(sym, ident, by_ref) => {
 					let sym_target = context.iter().find_map(|replace_pat| {
 						replace_pat.iter().find_map(|item| match item {
-							Ident(sym_target, ident_target)
+							Ident(sym_target, ident_target, by_ref)
 								if ident_target == ident && sym_target != sym =>
 								Some(sym_target),
 							_ => None,
