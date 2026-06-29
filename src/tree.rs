@@ -42,6 +42,21 @@ impl<T> Tree<T> {
 
 	/// Returns a slice of the subtrees of this tree.
 	pub fn subtrees(&self) -> &[Tree<T>] { &self.subtrees }
+
+	/// Traverses tree by specified criteria.
+	pub fn visit<'a>(
+		&'a self,
+		matcher: impl 'a + Clone + Fn(&'a Tree<T>) -> bool,
+	) -> Box<dyn 'a + Iterator<Item = &'a Tree<T>>> {
+		let cloned = matcher.clone();
+		let iter = std::iter::once(self).filter(move |item| (matcher)(item)).chain(
+			self.subtrees
+				.iter()
+				.zip(std::iter::repeat(cloned))
+				.flat_map(move |(subtree, matcher)| subtree.visit(matcher)),
+		);
+		Box::new(iter)
+	}
 }
 
 impl<T> AsRef<T> for Tree<T> {
