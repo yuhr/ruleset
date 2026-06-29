@@ -57,6 +57,13 @@ impl<T> Tree<T> {
 		);
 		Box::new(iter)
 	}
+
+	pub fn leaves<'a>(&'a self) -> Box<dyn 'a + Iterator<Item = &'a Tree<T>>> {
+		let iter = std::iter::once(self)
+			.filter(|tree| tree.is_leaf())
+			.chain(self.subtrees.iter().flat_map(Tree::leaves));
+		Box::new(iter)
+	}
 }
 
 impl<T> AsRef<T> for Tree<T> {
